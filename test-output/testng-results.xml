@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="59679" started-at="2018-07-20T06:20:13Z" finished-at="2018-07-20T06:21:13Z">
+  <suite name="Default suite" duration-ms="65398" started-at="2018-07-31T04:45:57Z" finished-at="2018-07-31T04:47:02Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="59679" started-at="2018-07-20T06:20:13Z" finished-at="2018-07-20T06:21:13Z">
+    <test name="Default test" duration-ms="65398" started-at="2018-07-31T04:45:57Z" finished-at="2018-07-31T04:47:02Z">
       <class name="SystemMavenProject.AnotherSystem">
-        <test-method status="PASS" signature="Login()[pri:1, instance:SystemMavenProject.AnotherSystem@6a4f787b]" name="Login" duration-ms="12951" started-at="2018-07-20T06:20:13Z" finished-at="2018-07-20T06:20:26Z">
+        <test-method status="PASS" signature="Login()[pri:1, instance:SystemMavenProject.AnotherSystem@13deb50e]" name="Login" duration-ms="12720" started-at="2018-07-31T04:45:57Z" finished-at="2018-07-31T04:46:10Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Login -->
-        <test-method status="PASS" signature="Finance()[pri:2, instance:SystemMavenProject.AnotherSystem@6a4f787b]" name="Finance" duration-ms="26697" started-at="2018-07-20T06:20:26Z" finished-at="2018-07-20T06:20:53Z">
+        <test-method status="PASS" signature="Finance()[pri:2, instance:SystemMavenProject.AnotherSystem@13deb50e]" name="Finance" duration-ms="30843" started-at="2018-07-31T04:46:10Z" finished-at="2018-07-31T04:46:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Finance -->
-        <test-method status="PASS" signature="Programs()[pri:3, instance:SystemMavenProject.AnotherSystem@6a4f787b]" name="Programs" duration-ms="14409" started-at="2018-07-20T06:20:53Z" finished-at="2018-07-20T06:21:07Z">
+        <test-method status="PASS" signature="Programs()[pri:3, instance:SystemMavenProject.AnotherSystem@13deb50e]" name="Programs" duration-ms="16385" started-at="2018-07-31T04:46:41Z" finished-at="2018-07-31T04:46:57Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Programs -->
-        <test-method status="PASS" signature="LoadFees()[pri:4, instance:SystemMavenProject.AnotherSystem@6a4f787b]" name="LoadFees" duration-ms="5594" started-at="2018-07-20T06:21:07Z" finished-at="2018-07-20T06:21:13Z">
+        <test-method status="PASS" signature="LoadFees()[pri:4, instance:SystemMavenProject.AnotherSystem@13deb50e]" name="LoadFees" duration-ms="5427" started-at="2018-07-31T04:46:57Z" finished-at="2018-07-31T04:47:02Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoadFees -->

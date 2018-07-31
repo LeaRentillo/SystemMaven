@@ -30,7 +30,7 @@ public void Login() {
 		//********************************** //	 
 			
 		//** FOR CHROME BROWSER ** //
-		   System.setProperty("webdriver.chrome.driver","C:\\Selenium\\ChromeDriver\\chromedriver.exe");
+		   System.setProperty("webdriver.chrome.driver","C:\\Users\\Dell\\Documents\\LEA\\SELENIUM\\chromedriver_win32\\chromedriver.exe");
 		   driver = new ChromeDriver();
 		//**********************************//	   
 	   
