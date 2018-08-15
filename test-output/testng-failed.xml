@@ -5,6 +5,7 @@
     <classes>
       <class name="SystemMavenProject.AnotherSystem">
         <methods>
+          <include name="LoadFees"/>
           <include name="Programs"/>
         </methods>
       </class> <!-- SystemMavenProject.AnotherSystem -->
