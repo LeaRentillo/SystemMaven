@@ -1356,6 +1356,155 @@ public void MnuSettingsPrefund() {
 	}
 }
 
+@Test (priority = Settings.SettingsDeliveryMethodTest, alwaysRun = true)
+public void MnuSettingsDeliveryMethod() {
+	
+	Settings testSettings = new Settings();
+	if(testSettings.skipTest("SettingsDeliveryMethodTest")){ 
+		String DeliveryMethod = "QA-D01";
+		String DeliveryName = "QA Automated Delivery Name " + DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(date); 
+		
+		driver.get("https://dev.system.an-other.co.uk/");
+		wait = new WebDriverWait(driver, 20); 
+		
+		WebElement ParseSettingsMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#w4 > li:nth-child(7) > a")));		
+		ParseSettingsMenu.click();
+		
+		
+		WebElement SettingsDeliveryMethod = driver.findElement(By.cssSelector("#w10 > li:nth-child(3) > a"));
+		SettingsDeliveryMethod.click();
+		
+		//create Record
+		WebElement CreateDeliveryMethod = driver.findElement(By.cssSelector("body > div.wrap > div.container-fluid > div > div > div > p > a"));
+		CreateDeliveryMethod.click();
+		
+		
+		wait = new WebDriverWait(driver, 10); 
+		WebElement ParseCreateDeliveryPage = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div.wrap > div.container-fluid > div > div > div > h1")));
+		
+		Assert.assertTrue(ParseCreateDeliveryPage.getText().contains("Add Delivery Method"));
+		
+		WebElement ParseDeliveryMethod = driver.findElement(By.name("DeliveryMethod[delivery_method]"));
+		ParseDeliveryMethod.sendKeys(DeliveryMethod);
+		
+		WebElement ParseDeliveryName = driver.findElement(By.name("DeliveryMethod[delivery_method_name]"));
+		ParseDeliveryName.sendKeys(DeliveryName);
+		
+		WebElement ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));
+		ParseCreate.click();		
+		
+		driver.navigate().back();
+		
+		//Search Record	
+		
+		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=delivery_method");
+		
+		WebElement baseTable =  wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"w0\"]/table")));
+		WebElement TariffCodeValue = baseTable.findElement(By.cssSelector("#w0 > table > tbody > tr > td:nth-child(2)"));
+		WebElement TariffNameValue = baseTable.findElement(By.cssSelector("#w0 > table > tbody > tr > td:nth-child(3)"));	
+		
+		WebElement ParseView = baseTable.findElement(By.cssSelector("#w0 > table > tbody > tr > td:nth-child(5) > a:nth-child(1) > span"));
+		
+		Assert.assertTrue(TariffCodeValue.getText().contains(DeliveryMethod));
+		Assert.assertTrue(TariffNameValue.getText().contains(DeliveryName));
+		
+		//View Record
+		ParseView.click();		
+		WebElement ParseViewPage = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#w0 > tbody > tr:nth-child(2) > th")));
+		WebElement ParseViewValue = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#w0 > tbody > tr:nth-child(2) > td")));
+		
+		if(ParseViewPage.getText() == "Value") {
+			Assert.assertTrue(ParseViewValue.getText().contains(DeliveryMethod));			
+		}
+		
+		
+		//Edit Record
+		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=delivery_method");
+		WebElement baseTableEdit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"w0\"]/table")));
+		WebElement ParseEdit = baseTableEdit.findElement(By.cssSelector("#w0 > table > tbody > tr > td:nth-child(5) > a:nth-child(2) > span"));
+		
+		ParseEdit.click();
+		WebElement ParsePage =  driver.findElement(By.cssSelector("body > div.wrap > div.container-fluid > div > div > div > h1"));
+		
+		Assert.assertTrue(ParsePage.getText().contains("Update Delivery Method: "+DeliveryName));
+		
+		WebElement ParseDeliveryMethodEdit = driver.findElement(By.name("DeliveryMethod[delivery_method]"));
+		ParseDeliveryMethodEdit.clear();
+		ParseDeliveryMethodEdit.sendKeys(DeliveryMethod +" -E");
+		
+		WebElement ParseDeliveryNameEdit = driver.findElement(By.name("DeliveryMethod[delivery_method_name]"));
+		ParseDeliveryNameEdit.clear();
+		ParseDeliveryNameEdit.sendKeys(DeliveryName+" -Edited");
+		
+		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+		ParseUpdate.click();
+		
+		
+		//Delete Record
+		driver.navigate().back();
+		
+		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=delivery_method");
+		
+		wait = new WebDriverWait(driver, 10);
+		WebElement baseTableDelete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"w0\"]/table")));
+		WebElement ParseDelete = baseTableDelete.findElement(By.cssSelector("#w0 > table > tbody > tr > td:nth-child(5) > a:nth-child(3) > span"));
+		ParseDelete.click();
+		driver.switchTo().alert().accept();
+		
+	}else{
+		 throw new SkipException("Skipping SettingsDeliveryMethodTest case. ");
+	}
+}
+
+@Test (priority = Settings.LogsCardholders, alwaysRun = true)
+public void MnuLogsCardholders() {
+	
+	Settings testSettings = new Settings();
+	if(testSettings.skipTest("LogsCardholders")){ 
+		String DeliveryMethod = "QA-D01";
+		String DeliveryName = "QA Automated Delivery Name " + DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(date); 
+		
+		driver.get("https://dev.system.an-other.co.uk/");
+		wait = new WebDriverWait(driver, 20); 
+		
+		WebElement ParseLogsMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#w4 > li:nth-child(8) > a")));		
+		ParseLogsMenu.click();
+		
+		
+		WebElement LogsCardholders = driver.findElement(By.cssSelector("#w11 > li:nth-child(1) > a"));
+		LogsCardholders.click();
+		
+		
+		wait = new WebDriverWait(driver, 10); 
+		WebElement ParseCardholdersLogsPage = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div.wrap > div.container-fluid > div > div > div > h1")));
+		
+		Assert.assertTrue(ParseCardholdersLogsPage.getText().contains("Cardholder Activity Logs"));
+		
+		WebElement ParseDateSearch = driver.findElement(By.xpath("//*[@id=\"userlogsearch-date_time-container\"]/div"));
+		ParseDateSearch.click();
+		
+		wait = new WebDriverWait(driver, 10); 
+		WebElement ParseDateRange = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[3]/div[1]/ul/li[4]")));
+		ParseDateRange.click();
+		
+		wait = new WebDriverWait(driver, 10);
+		WebElement baseTable = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"w0-container\"]/table")));
+		
+		try {
+			WebElement ParseRow = baseTable.findElement(By.cssSelector("#w0-container > table > tbody > tr:nth-child(1) > td:nth-child(1)"));
+			Assert.assertNotNull(ParseRow.getText());
+
+	    }
+	    catch(org.openqa.selenium.StaleElementReferenceException ex)
+		{
+	    	WebElement ParseRow = baseTable.findElement(By.xpath("//*[@id=\"w0-container\"]/table/tbody/tr/td/div"));
+			Assert.assertEquals("No results found.", ParseRow.getText());	    	
+		}	 
+	}else{
+		 throw new SkipException("Skipping LogsCardholders case. ");
+	}
+}
+
 @Test (priority = Settings.LoadFeesTest, alwaysRun = true)
 public void LoadFees() {
 	

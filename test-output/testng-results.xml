@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="2" failed="0" ignored="0" total="14" passed="12">
+<testng-results skipped="2" failed="0" ignored="0" total="16" passed="14">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="226001" started-at="2018-08-15T06:19:13Z" finished-at="2018-08-15T06:22:59Z">
+  <suite name="Default suite" duration-ms="286672" started-at="2018-08-16T07:48:33Z" finished-at="2018-08-16T07:53:20Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="226001" started-at="2018-08-15T06:19:13Z" finished-at="2018-08-15T06:22:59Z">
+    <test name="Default test" duration-ms="286672" started-at="2018-08-16T07:48:33Z" finished-at="2018-08-16T07:53:20Z">
       <class name="SystemMavenProject.AnotherSystem">
-        <test-method status="PASS" signature="Login()[pri:1, instance:SystemMavenProject.AnotherSystem@5f341870]" name="Login" duration-ms="14284" started-at="2018-08-15T06:19:13Z" finished-at="2018-08-15T06:19:27Z">
+        <test-method status="PASS" signature="Login()[pri:1, instance:SystemMavenProject.AnotherSystem@5f341870]" name="Login" duration-ms="12059" started-at="2018-08-16T07:48:33Z" finished-at="2018-08-16T07:48:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Login -->
-        <test-method status="PASS" signature="Finance()[pri:2, instance:SystemMavenProject.AnotherSystem@5f341870]" name="Finance" duration-ms="31213" started-at="2018-08-15T06:19:27Z" finished-at="2018-08-15T06:19:58Z">
+        <test-method status="PASS" signature="Finance()[pri:2, instance:SystemMavenProject.AnotherSystem@5f341870]" name="Finance" duration-ms="29934" started-at="2018-08-16T07:48:45Z" finished-at="2018-08-16T07:49:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Finance -->
-        <test-method status="SKIP" signature="LoadFees()[pri:3, instance:SystemMavenProject.AnotherSystem@5f341870]" name="LoadFees" duration-ms="1" started-at="2018-08-15T06:19:58Z" finished-at="2018-08-15T06:19:58Z">
+        <test-method status="SKIP" signature="LoadFees()[pri:3, instance:SystemMavenProject.AnotherSystem@5f341870]" name="LoadFees" duration-ms="1" started-at="2018-08-16T07:49:15Z" finished-at="2018-08-16T07:49:15Z">
           <exception class="org.testng.SkipException">
             <message>
               <![CDATA[Skipping LoadFeesTest case. ]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.testng.SkipException: Skipping LoadFeesTest case. 
-at SystemMavenProject.AnotherSystem.LoadFees(AnotherSystem.java:1429)
+at SystemMavenProject.AnotherSystem.LoadFees(AnotherSystem.java:1578)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -54,7 +54,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoadFees -->
-        <test-method status="SKIP" signature="Programs()[pri:4, instance:SystemMavenProject.AnotherSystem@5f341870]" name="Programs" duration-ms="0" started-at="2018-08-15T06:19:58Z" finished-at="2018-08-15T06:19:58Z">
+        <test-method status="SKIP" signature="Programs()[pri:4, instance:SystemMavenProject.AnotherSystem@5f341870]" name="Programs" duration-ms="0" started-at="2018-08-16T07:49:15Z" finished-at="2018-08-16T07:49:15Z">
           <exception class="org.testng.SkipException">
             <message>
               <![CDATA[Skipping ProgramsTest case. ]]>
@@ -93,46 +93,54 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Programs -->
-        <test-method status="PASS" signature="MnuProgramProducts()[pri:5, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramProducts" duration-ms="16461" started-at="2018-08-15T06:19:58Z" finished-at="2018-08-15T06:20:15Z">
+        <test-method status="PASS" signature="MnuProgramProducts()[pri:5, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramProducts" duration-ms="15379" started-at="2018-08-16T07:49:15Z" finished-at="2018-08-16T07:49:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuProgramProducts -->
-        <test-method status="PASS" signature="MnuProgramProductRef()[pri:6, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramProductRef" duration-ms="17478" started-at="2018-08-15T06:20:15Z" finished-at="2018-08-15T06:20:32Z">
+        <test-method status="PASS" signature="MnuProgramProductRef()[pri:6, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramProductRef" duration-ms="18904" started-at="2018-08-16T07:49:31Z" finished-at="2018-08-16T07:49:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuProgramProductRef -->
-        <test-method status="PASS" signature="MnuProgramCarrierType()[pri:7, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramCarrierType" duration-ms="18981" started-at="2018-08-15T06:20:32Z" finished-at="2018-08-15T06:20:51Z">
+        <test-method status="PASS" signature="MnuProgramCarrierType()[pri:7, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramCarrierType" duration-ms="19610" started-at="2018-08-16T07:49:50Z" finished-at="2018-08-16T07:50:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuProgramCarrierType -->
-        <test-method status="PASS" signature="MnuProgramDeliveryFee()[pri:8, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramDeliveryFee" duration-ms="20469" started-at="2018-08-15T06:20:51Z" finished-at="2018-08-15T06:21:12Z">
+        <test-method status="PASS" signature="MnuProgramDeliveryFee()[pri:8, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramDeliveryFee" duration-ms="23951" started-at="2018-08-16T07:50:09Z" finished-at="2018-08-16T07:50:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuProgramDeliveryFee -->
-        <test-method status="PASS" signature="MnuProgramTariff()[pri:9, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramTariff" duration-ms="17763" started-at="2018-08-15T06:21:12Z" finished-at="2018-08-15T06:21:29Z">
+        <test-method status="PASS" signature="MnuProgramTariff()[pri:9, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuProgramTariff" duration-ms="17748" started-at="2018-08-16T07:50:33Z" finished-at="2018-08-16T07:50:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuProgramTariff -->
-        <test-method status="PASS" signature="MnuUserSystemUser()[pri:10, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuUserSystemUser" duration-ms="27742" started-at="2018-08-15T06:21:29Z" finished-at="2018-08-15T06:21:57Z">
+        <test-method status="PASS" signature="MnuUserSystemUser()[pri:10, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuUserSystemUser" duration-ms="27052" started-at="2018-08-16T07:50:51Z" finished-at="2018-08-16T07:51:18Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuUserSystemUser -->
-        <test-method status="PASS" signature="MnuUserProgramUser()[pri:11, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuUserProgramUser" duration-ms="26157" started-at="2018-08-15T06:21:57Z" finished-at="2018-08-15T06:22:23Z">
+        <test-method status="PASS" signature="MnuUserProgramUser()[pri:11, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuUserProgramUser" duration-ms="24823" started-at="2018-08-16T07:51:18Z" finished-at="2018-08-16T07:51:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuUserProgramUser -->
-        <test-method status="PASS" signature="MnuIPWhitelist()[pri:12, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuIPWhitelist" duration-ms="12388" started-at="2018-08-15T06:22:23Z" finished-at="2018-08-15T06:22:36Z">
+        <test-method status="PASS" signature="MnuIPWhitelist()[pri:12, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuIPWhitelist" duration-ms="15252" started-at="2018-08-16T07:51:43Z" finished-at="2018-08-16T07:51:58Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuIPWhitelist -->
-        <test-method status="PASS" signature="MnuSupportCardholder()[pri:13, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuSupportCardholder" duration-ms="13369" started-at="2018-08-15T06:22:36Z" finished-at="2018-08-15T06:22:49Z">
+        <test-method status="PASS" signature="MnuSupportCardholder()[pri:13, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuSupportCardholder" duration-ms="10828" started-at="2018-08-16T07:51:58Z" finished-at="2018-08-16T07:52:09Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuSupportCardholder -->
-        <test-method status="PASS" signature="MnuSettingsPrefund()[pri:14, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuSettingsPrefund" duration-ms="9658" started-at="2018-08-15T06:22:49Z" finished-at="2018-08-15T06:22:59Z">
+        <test-method status="PASS" signature="MnuSettingsPrefund()[pri:14, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuSettingsPrefund" duration-ms="9728" started-at="2018-08-16T07:52:09Z" finished-at="2018-08-16T07:52:19Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MnuSettingsPrefund -->
+        <test-method status="PASS" signature="MnuSettingsDeliveryMethod()[pri:15, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuSettingsDeliveryMethod" duration-ms="55480" started-at="2018-08-16T07:52:19Z" finished-at="2018-08-16T07:53:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- MnuSettingsDeliveryMethod -->
+        <test-method status="PASS" signature="MnuLogsCardholders()[pri:16, instance:SystemMavenProject.AnotherSystem@5f341870]" name="MnuLogsCardholders" duration-ms="5878" started-at="2018-08-16T07:53:14Z" finished-at="2018-08-16T07:53:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- MnuLogsCardholders -->
       </class> <!-- SystemMavenProject.AnotherSystem -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
