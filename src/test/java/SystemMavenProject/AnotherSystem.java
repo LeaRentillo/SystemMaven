@@ -1,10 +1,13 @@
 package SystemMavenProject;
 
 import SystemMavenProject.Settings;
+import SystemMavenProject.CRUDTestCase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -448,18 +451,29 @@ public void MnuProgramProducts() {
 		Assert.assertTrue(ParseProductPage.getText().contains("Add Product"));
 		
 		WebElement ParseProductCode = driver.findElement(By.name("Product[product_id]"));
-		ParseProductCode.sendKeys(ProductCode);
-		
 		WebElement ParseProductName = driver.findElement(By.name("Product[name]"));
-		ParseProductName.sendKeys(ProductName);
-		
 		Select CardType = new Select(driver.findElement(By.name("Product[card_type]")));
-		CardType.selectByValue("1");
-				
-		WebElement ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));
-		//ParseCreate.click();		
 		
+		List<WebElement>  all_elements_text =new ArrayList<>();
+		all_elements_text.add(ParseProductCode);
+		all_elements_text.add(ParseProductName);
+		    
+		WebElement  ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));
+		
+		 CRUDTestCase CrudTest = new CRUDTestCase();
+		 CrudTest.validateEmptyFields(all_elements_text,ParseCreate,"create");
+		 
+		 
+		 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); 
+		
+		 ParseProductName.sendKeys(ProductName);
+		 ParseProductCode.sendKeys(ProductCode);
+		 CardType.selectByValue("1");
+		// ParseCreate.click();
+		 		
 		driver.navigate().back();
+		
+		
 		//Search Record		
 		driver.get("https://dev.system.an-other.co.uk/product/index?ProductSearch[product_id]="+ProductCode+"&ProductSearch[name]="+ProductName+"&ProductSearch[card_type]=1&sort=product_id");
 		
@@ -495,14 +509,26 @@ public void MnuProgramProducts() {
 		Assert.assertTrue(ParsePage.getText().contains("Update Product: "+ProductCode));
 		
 		WebElement ParseProductCodeEdit = driver.findElement(By.name("Product[product_id]"));
+		WebElement ParseProductNameEdit = driver.findElement(By.name("Product[name]"));
+		
+		
+		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+		
+		List<WebElement>  all_elements_edits =new ArrayList<>();
+		all_elements_edits.add(ParseProductCodeEdit);
+		all_elements_edits.add(ParseProductNameEdit);
+		
+		CRUDTestCase CrudTestEdit = new CRUDTestCase(); //Re-instantiated because of stale error.
+		CrudTestEdit.validateEmptyFields(all_elements_edits,ParseUpdate,"update");
+	    
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
 		ParseProductCodeEdit.clear();
 		ParseProductCodeEdit.sendKeys(ProductCode+"-E");
 		
-		WebElement ParseProductNameEdit = driver.findElement(By.name("Product[name]"));
 		ParseProductNameEdit.clear();
 		ParseProductNameEdit.sendKeys(ProductName+"-Edited");
 		
-		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
 		ParseUpdate.click();
 		driver.navigate().back();
 		
@@ -510,10 +536,9 @@ public void MnuProgramProducts() {
 		 throw new SkipException("Skipping ProgramProductsTest case. ");
 	}
 		
-	
-	
-	
 }
+
+
 
 @Test (priority = Settings.ProgramProductRefTest, alwaysRun = true)
 public void MnuProgramProductRef() {
@@ -544,12 +569,23 @@ public void MnuProgramProductRef() {
 		Assert.assertTrue(ParseProductRefPage.getText().contains("Add Product Ref"));
 		
 		WebElement ParseProductRef = driver.findElement(By.name("ProductRef[product_ref]"));
-		ParseProductRef.sendKeys(ProductRef);
-		
 		WebElement ParseProductRefDesc = driver.findElement(By.name("ProductRef[description]"));
-		ParseProductRefDesc.sendKeys(ProductRefDesc);
-		
+
+		List<WebElement>  all_elements_text =new ArrayList<>();
+		all_elements_text.add(ParseProductRef);
+		all_elements_text.add(ParseProductRefDesc);
+		    
 		WebElement ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));
+				
+		
+		CRUDTestCase CrudTest = new CRUDTestCase();
+		CrudTest.validateEmptyFields(all_elements_text,ParseCreate,"create");
+		 
+		
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); 
+		ParseProductRef.sendKeys(ProductRef);
+		ParseProductRefDesc.sendKeys(ProductRefDesc);
+		 
 		ParseCreate.click();		
 		
 		driver.navigate().back();
@@ -587,14 +623,23 @@ public void MnuProgramProductRef() {
 		Assert.assertTrue(ParsePage.getText().contains("Update Product Ref: "+ProductRef));
 		
 		WebElement ParseProductRefEdit = driver.findElement(By.name("ProductRef[product_ref]"));
+		WebElement ParseProductRefDescEdit = driver.findElement(By.name("ProductRef[description]"));
+		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+				
+		List<WebElement>  all_elements_edits =new ArrayList<>();
+		all_elements_edits.add(ParseProductRefEdit);
+		all_elements_edits.add(ParseProductRefDescEdit);
+				
+		CRUDTestCase CrudTestEdit = new CRUDTestCase(); //Re-instantiated because of stale error.
+		CrudTestEdit.validateEmptyFields(all_elements_edits,ParseUpdate,"update");
+	    		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
 		ParseProductRefEdit.clear();
 		ParseProductRefEdit.sendKeys(ProductRef+" -E");
 		
-		WebElement ParseProductRefDescEdit = driver.findElement(By.name("ProductRef[description]"));
 		ParseProductRefDescEdit.clear();
 		ParseProductRefDescEdit.sendKeys(ProductRefDesc+" -Edited");
-		
-		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+				
 		ParseUpdate.click();
 		
 		
@@ -642,13 +687,21 @@ public void MnuProgramCarrierType() {
 		
 		Assert.assertTrue(ParseCarrierTypePage.getText().contains("Add Carrier Type"));
 		
-		WebElement ParseCarrierType = driver.findElement(By.name("CarrierType[carrier_type]"));
-		ParseCarrierType.sendKeys(CarrierType);
-		
+		WebElement ParseCarrierType = driver.findElement(By.name("CarrierType[carrier_type]"));				
 		WebElement ParseCarrierDesc = driver.findElement(By.name("CarrierType[description]"));
-		ParseCarrierDesc.sendKeys(CarrierDesc);
+		WebElement ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));		
+
+		List<WebElement>  all_elements_text =new ArrayList<>();
+		all_elements_text.add(ParseCarrierType);
+		all_elements_text.add(ParseCarrierDesc);				
 		
-		WebElement ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));
+		CRUDTestCase CrudTest = new CRUDTestCase();
+		CrudTest.validateEmptyFields(all_elements_text,ParseCreate,"create");
+		 
+		 
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); 
+		ParseCarrierType.sendKeys(CarrierType);
+		ParseCarrierDesc.sendKeys(CarrierDesc);
 		ParseCreate.click();		
 		
 		driver.navigate().back();
@@ -687,14 +740,25 @@ public void MnuProgramCarrierType() {
 		Assert.assertTrue(ParsePage.getText().contains("Update Carrier Type: "+CarrierType));
 		
 		WebElement ParseCarrierTypeEdit = driver.findElement(By.name("CarrierType[carrier_type]"));
+		WebElement ParseCarrierTypeDescEdit = driver.findElement(By.name("CarrierType[description]"));
+		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+		
+		List<WebElement>  all_elements_edits =new ArrayList<>();
+		all_elements_edits.add(ParseCarrierTypeEdit);
+		all_elements_edits.add(ParseCarrierTypeDescEdit);
+		
+		
+		CRUDTestCase CrudTestEdit = new CRUDTestCase(); //Re-instantiated because of stale error.
+		CrudTestEdit.validateEmptyFields(all_elements_edits,ParseUpdate,"update");
+		    
+			
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
 		ParseCarrierTypeEdit.clear();
 		ParseCarrierTypeEdit.sendKeys(CarrierType+" -E");
-		
-		WebElement ParseCarrierTypeDescEdit = driver.findElement(By.name("CarrierType[description]"));
+			
 		ParseCarrierTypeDescEdit.clear();
 		ParseCarrierTypeDescEdit.sendKeys(CarrierDesc+" -Edited");
-		
-		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+			
 		ParseUpdate.click();
 		
 		
@@ -760,15 +824,27 @@ public void MnuProgramDeliveryFee() {
 			ProgramName = ProgramValue.getText();
 			
 			WebElement ParseDF_UK = driver.findElement(By.name("DeliveryFee[uk_fee]"));
-			ParseDF_UK.sendKeys(DF_UKFee);
-			
 			WebElement ParseDF_EUR = driver.findElement(By.name("DeliveryFee[europe_fee]"));
-			ParseDF_EUR.sendKeys(DF_EURFee);
-			
 			WebElement ParseDF_OT = driver.findElement(By.name("DeliveryFee[other_country_fee]"));
-			ParseDF_OT.sendKeys(DF_OTFee);
+			
 			
 			WebElement ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));
+			
+			
+			List<WebElement>  all_elements_text =new ArrayList<>();
+		    all_elements_text.add(ParseDF_UK);
+		    all_elements_text.add(ParseDF_EUR);
+		    all_elements_text.add(ParseDF_OT);
+		
+		    CRUDTestCase CrudTest = new CRUDTestCase();
+		    CrudTest.validateEmptyFields(all_elements_text,ParseCreate,"create");
+		 
+		 
+		    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); 
+		    ParseDF_UK.sendKeys(DF_UKFee);
+		    ParseDF_EUR.sendKeys(DF_EURFee);
+		    ParseDF_OT.sendKeys(DF_OTFee);
+			
 			ParseCreate.click();	
 			driver.navigate().back();
 		}else {
@@ -809,15 +885,25 @@ public void MnuProgramDeliveryFee() {
 			ParseDF_UKEdit.clear();
 			ParseDF_UKEdit.sendKeys(DF_UKFee);
 			
-			WebElement ParseDF_EUREdit = driver.findElement(By.name("DeliveryFee[europe_fee]"));
-			ParseDF_EUREdit.clear();
-			ParseDF_EUREdit.sendKeys(DF_EURFee);
-			
-			WebElement ParseDF_OTEdit = driver.findElement(By.name("DeliveryFee[other_country_fee]"));
-			ParseDF_OTEdit.clear();
-			ParseDF_OTEdit.sendKeys(DF_OTFee);
-			
+			WebElement ParseDF_EUREdit = driver.findElement(By.name("DeliveryFee[europe_fee]"));		
+			WebElement ParseDF_OTEdit = driver.findElement(By.name("DeliveryFee[other_country_fee]"));			
 			WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+			
+			 List<WebElement>  all_elements_edits =new ArrayList<>();
+				all_elements_edits.add(ParseDF_EUREdit);
+				all_elements_edits.add(ParseDF_OTEdit);				
+				
+				CRUDTestCase CrudTestEdit = new CRUDTestCase(); //Re-instantiated because of stale error.
+				CrudTestEdit.validateEmptyFields(all_elements_edits,ParseUpdate,"update");
+			    
+				
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
+				ParseDF_EUREdit.clear();
+				ParseDF_EUREdit.sendKeys(DF_EURFee);
+				
+				ParseDF_OTEdit.clear();
+				ParseDF_OTEdit.sendKeys(DF_OTFee);
+				
 			ParseUpdate.click();
 		}
 		driver.navigate().back();
@@ -856,13 +942,24 @@ public void MnuProgramTariff() {
 		
 		Assert.assertTrue(ParseCreateTariffPage.getText().contains("Create Tariff"));
 		
-		WebElement ParseTariffCode = driver.findElement(By.name("Tariff[code]"));
-		ParseTariffCode.sendKeys(TariffCode);
-		
+		WebElement ParseTariffCode = driver.findElement(By.name("Tariff[code]"));		
 		WebElement ParseTariffName = driver.findElement(By.name("Tariff[name]"));
-		ParseTariffName.sendKeys(TariffName);
+		
 		
 		WebElement ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));
+		
+		List<WebElement>  all_elements_text =new ArrayList<>();
+	    all_elements_text.add(ParseTariffCode);
+	    all_elements_text.add(ParseTariffName);
+	    
+	    CRUDTestCase CrudTest = new CRUDTestCase();
+	    CrudTest.validateEmptyFields(all_elements_text,ParseCreate,"create");
+	 
+	 
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); 
+	    ParseTariffCode.sendKeys(TariffCode);
+	    ParseTariffName.sendKeys(TariffName);
+	 	 
 		ParseCreate.click();		
 		
 		driver.navigate().back();
@@ -901,16 +998,26 @@ public void MnuProgramTariff() {
 		Assert.assertTrue(ParsePage.getText().contains("Update Tariff: "+TariffCode));
 		
 		WebElement ParseTariffCodeEdit = driver.findElement(By.name("Tariff[code]"));
+		WebElement ParseTariffNameEdit = driver.findElement(By.name("Tariff[name]"));
+		
+		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+		
+		List<WebElement>  all_elements_edits =new ArrayList<>();
+		all_elements_edits.add(ParseTariffCodeEdit);
+		all_elements_edits.add(ParseTariffNameEdit);
+		
+		CRUDTestCase CrudTestEdit = new CRUDTestCase(); //Re-instantiated because of stale error.
+		CrudTestEdit.validateEmptyFields(all_elements_edits,ParseUpdate,"update");
+	    
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
 		ParseTariffCodeEdit.clear();
 		ParseTariffCodeEdit.sendKeys(TariffCode+" -E");
 		
-		WebElement ParseTariffNameEdit = driver.findElement(By.name("Tariff[name]"));
 		ParseTariffNameEdit.clear();
 		ParseTariffNameEdit.sendKeys(TariffName+" -Edited");
 		
-		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
 		ParseUpdate.click();
-		
 		
 		//Delete Record
 		driver.navigate().back();
@@ -1213,13 +1320,24 @@ public void MnuIPWhitelist() {
 				IPWhitelistIP = "000.0.0.0";
 				WhitelistDesc = WhitelistDesc + " -Edited001";
 			}*/
-			ParseWhitelistIpEdit.clear();
-			ParseWhitelistIpEdit.sendKeys(IPWhitelistIP);
-			ParseWhitelistDescEdit.clear();
-			ParseWhitelistDescEdit.sendKeys(WhitelistDesc + " - Edited");
 			
-			WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
-			ParseUpdate.click();
+			 List<WebElement>  all_elements_edits =new ArrayList<>();
+			 all_elements_edits.add(ParseWhitelistIpEdit);
+			 all_elements_edits.add(ParseWhitelistDescEdit);
+				
+			 WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+				
+			 CRUDTestCase CrudTestEdit = new CRUDTestCase(); //Re-instantiated because of stale error.
+			 CrudTestEdit.validateEmptyFields(all_elements_edits,ParseUpdate,"update");
+			 
+			 
+			 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
+			 ParseWhitelistIpEdit.clear();
+			 ParseWhitelistIpEdit.sendKeys(IPWhitelistIP);
+			 ParseWhitelistDescEdit.clear();
+			 ParseWhitelistDescEdit.sendKeys(WhitelistDesc + " - Edited");
+			 
+			 ParseUpdate.click();
 			driver.navigate().back();
 		}catch(Exception e){
 			 
@@ -1234,15 +1352,26 @@ public void MnuIPWhitelist() {
 			Assert.assertTrue(ParseWhitelistPage.getText().contains("Add IP Whitelist"));
 			
 			WebElement ParseWhitelist = driver.findElement(By.name("IpWhitelist[ip_address]"));
-			ParseWhitelist.sendKeys(IPWhitelistIP);
-			
 			WebElement ParseWhitelistDesc = driver.findElement(By.name("IpWhitelist[comments]"));
-			ParseWhitelistDesc.sendKeys(WhitelistDesc);
+			
 			
 			
 			WebElement ParseCreate = driver.findElement(By.xpath("//*[@id=\"w0\"]/div[3]/button"));
 			ParseCreate.click();		
 			
+			List<WebElement>  all_elements_text =new ArrayList<>();
+		    all_elements_text.add(ParseWhitelist);
+		    all_elements_text.add(ParseWhitelistDesc);
+		    
+		    CRUDTestCase CrudTest = new CRUDTestCase();
+		    CrudTest.validateEmptyFields(all_elements_text,ParseCreate,"create");
+		 
+		 
+			 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); 
+			 ParseWhitelist.sendKeys(IPWhitelistIP);
+			 ParseWhitelistDesc.sendKeys(WhitelistDesc);
+			 ParseCreate.click();
+		 
 			driver.navigate().back();
 	 		}		
 		
@@ -1379,25 +1508,36 @@ public void MnuSettingsDeliveryMethod() {
 		CreateDeliveryMethod.click();
 		
 		
+		
 		wait = new WebDriverWait(driver, 10); 
 		WebElement ParseCreateDeliveryPage = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > div.wrap > div.container-fluid > div > div > div > h1")));
 		
 		Assert.assertTrue(ParseCreateDeliveryPage.getText().contains("Add Delivery Method"));
 		
-		WebElement ParseDeliveryMethod = driver.findElement(By.name("DeliveryMethod[delivery_method]"));
-		ParseDeliveryMethod.sendKeys(DeliveryMethod);
-		
+		WebElement ParseDeliveryMethod = driver.findElement(By.name("DeliveryMethod[delivery_method]"));	
 		WebElement ParseDeliveryName = driver.findElement(By.name("DeliveryMethod[delivery_method_name]"));
-		ParseDeliveryName.sendKeys(DeliveryName);
 		
+		 List<WebElement>  all_elements_text =new ArrayList<>();
+		    all_elements_text.add(ParseDeliveryMethod);
+		    all_elements_text.add(ParseDeliveryMethod);
+		    
 		WebElement ParseCreate = driver.findElement(By.xpath("//button[contains(text(),'Create')]"));
-		ParseCreate.click();		
+				
 		
-		driver.navigate().back();
+		 CRUDTestCase CrudTest = new CRUDTestCase();
+		 CrudTest.validateEmptyFields(all_elements_text,ParseCreate,"create");
+		 
+		 
+		 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); 
+		 ParseDeliveryMethod.sendKeys(DeliveryMethod);
+		 ParseDeliveryName.sendKeys(DeliveryName);
+		 ParseCreate.click();
+		
+		 driver.navigate().back();
 		
 		//Search Record	
 		
-		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=delivery_method");
+		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=-delivery_method");
 		
 		WebElement baseTable =  wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"w0\"]/table")));
 		WebElement TariffCodeValue = baseTable.findElement(By.cssSelector("#w0 > table > tbody > tr > td:nth-child(2)"));
@@ -1419,7 +1559,7 @@ public void MnuSettingsDeliveryMethod() {
 		
 		
 		//Edit Record
-		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=delivery_method");
+		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=-delivery_method");
 		WebElement baseTableEdit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"w0\"]/table")));
 		WebElement ParseEdit = baseTableEdit.findElement(By.cssSelector("#w0 > table > tbody > tr > td:nth-child(5) > a:nth-child(2) > span"));
 		
@@ -1428,22 +1568,35 @@ public void MnuSettingsDeliveryMethod() {
 		
 		Assert.assertTrue(ParsePage.getText().contains("Update Delivery Method: "+DeliveryName));
 		
-		WebElement ParseDeliveryMethodEdit = driver.findElement(By.name("DeliveryMethod[delivery_method]"));
+		WebElement ParseDeliveryMethodEdit = driver.findElement(By.name("DeliveryMethod[delivery_method]"));		
+		WebElement ParseDeliveryNameEdit = driver.findElement(By.name("DeliveryMethod[delivery_method_name]"));
+		
+		
+		List<WebElement>  all_elements_edits =new ArrayList<>();
+		all_elements_edits.add(ParseDeliveryMethodEdit);
+		all_elements_edits.add(ParseDeliveryNameEdit);
+		
+		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+		
+		CRUDTestCase CrudTestEdit = new CRUDTestCase(); //Re-instantiated because of stale error.
+		CrudTestEdit.validateEmptyFields(all_elements_edits,ParseUpdate,"update");
+	    
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
 		ParseDeliveryMethodEdit.clear();
 		ParseDeliveryMethodEdit.sendKeys(DeliveryMethod +" -E");
 		
-		WebElement ParseDeliveryNameEdit = driver.findElement(By.name("DeliveryMethod[delivery_method_name]"));
 		ParseDeliveryNameEdit.clear();
 		ParseDeliveryNameEdit.sendKeys(DeliveryName+" -Edited");
 		
-		WebElement ParseUpdate = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
-		ParseUpdate.click();
+		WebElement ParseUpdate2 = driver.findElement(By.xpath("//button[contains(text(),'Update')]"));
+		ParseUpdate2.click();
 		
 		
 		//Delete Record
 		driver.navigate().back();
 		
-		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=delivery_method");
+		driver.get("https://dev.system.an-other.co.uk/delivery-method/index?DeliveryMethodSearch[delivery_method]=&DeliveryMethodSearch[delivery_method_name]="+DeliveryName+"&sort=-delivery_method");
 		
 		wait = new WebDriverWait(driver, 10);
 		WebElement baseTableDelete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"w0\"]/table")));

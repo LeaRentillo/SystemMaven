@@ -35,7 +35,7 @@ public class Settings {
       	   	break;
          case "FinanceTest": runTestCase = true;
  	   			break;
-         case "LoadFeesTest": runTestCase = false;
+         case "LoadFeesTest": runTestCase = true;
  	   			break;
          case "ProgramsTest": runTestCase = false;
          		break;
